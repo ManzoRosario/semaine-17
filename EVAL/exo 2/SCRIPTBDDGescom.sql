@@ -1,21 +1,21 @@
 DROP DATABASE IF EXISTS Gescom;
 CREATE DATABASE IF NOT EXISTS Gescom;
 USE Gescom;
-
+--Structure de la table Commercial 
 CREATE TABLE Commercial(
    Id_Commercial INT(10),
    com_name VARCHAR(20),
    com_firstname VARCHAR(20) NOT NULL,
    PRIMARY KEY(Id_Commercial)
 );
-
+--Structure de la table Shop
 CREATE TABLE Shop(
    Id_Shop INT(10),
    shop_dep SMALLINT NOT NULL,
    shop_name VARCHAR(20) NOT NULL,
    PRIMARY KEY(Id_Shop)
 );
-
+-- Structure de la table `customer`
 CREATE TABLE Customer(
    Id_Customer INT(10),
    cust_password CHAR(8) NOT NULL,
@@ -28,12 +28,12 @@ CREATE TABLE Customer(
    PRIMARY KEY(Id_Customer)
 );
 
-
+-- Structure de la table `category`
 CREATE TABLE category(
    Id_category INT(10),
    PRIMARY KEY(Id_category)
 );
-
+--Structure de la table sous_category
 CREATE TABLE sous_category(
    Id_sous_category INT(10),
    PRIMARY KEY(Id_sous_category)
@@ -41,7 +41,7 @@ CREATE TABLE sous_category(
 
 
 
-
+--Structure de la table Suppliers
 CREATE TABLE Suppliers(
    Id_Suppliers INT(10),
    supplier_firstname VARCHAR(20) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE Suppliers(
    PRIMARY KEY(Id_Suppliers),
    FOREIGN KEY(Id_Commercial) REFERENCES Commercial(Id_Commercial)
 );
-
+--Structure de la table Employee
 CREATE TABLE Employee(
    Id_Employee INT(10),
    empl_salary decimal (7.2) NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE Employee(
    FOREIGN KEY(Id_Employee_1) REFERENCES Employee(Id_Employee),
    FOREIGN KEY(Id_Shop) REFERENCES Shop(Id_Shop)
 );
-
+--Structure de la table Product
 CREATE TABLE Product(
    Id_Product INT(10),
    prod_price decimal(7.2) NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE Product(
    PRIMARY KEY(Id_Product),
    FOREIGN KEY(Id_Suppliers) REFERENCES Suppliers(Id_Suppliers)
 );
-
+--Structure de la table Orders
 CREATE TABLE Orders(
    Id_Product INT(10),
    Id_Customer INT(10),
@@ -100,7 +100,7 @@ CREATE TABLE Orders(
    FOREIGN KEY(Id_Product) REFERENCES Product(Id_Product),
    FOREIGN KEY(Id_Customer) REFERENCES Customer(Id_Customer)
 );
-
+--Structure de la table Sell
 CREATE TABLE sell(
    Id_Product INT(10),
    Id_Shop INT(10),
@@ -108,7 +108,7 @@ CREATE TABLE sell(
    FOREIGN KEY(Id_Product) REFERENCES Product(Id_Product),
    FOREIGN KEY(Id_Shop) REFERENCES Shop(Id_Shop)
 );
-
+--Structure de la table searching
 CREATE TABLE searching(
    Id_Product INT(10),
    Id_category INT(10),
@@ -116,7 +116,7 @@ CREATE TABLE searching(
    FOREIGN KEY(Id_Product) REFERENCES Product(Id_Product),
    FOREIGN KEY(Id_category) REFERENCES category(Id_category)
 );
-
+--Structure de la table Classer
 CREATE TABLE Classer(
    Id_sous_category INT(10),
    Id_category INT(10),
